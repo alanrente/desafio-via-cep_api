@@ -1,0 +1,33 @@
+services:
+  db:
+    ports:
+      - 5501:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=desafioviacep
+      - POSTGRES_DB=desafioviacep
+    image: postgres:14
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  app:
+      build: 
+        context: .
+        dockerfile: Dockerfile
+      restart: always
+      ports:
+        - 3001:3001
+      expose:
+        - 3001
+      environment:
+        - PORT=3001
+        - DB_HOST=db
+        - DB_USERNAME=postgres
+        - DB_PASSWORD=desafioviacep
+        - DB_DATABASE=desafioviacep
+      volumes:
+        - './src:/app/src'
+      depends_on:
+        - db
+volumes:
+  postgres:
+    driver: local
