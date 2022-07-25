@@ -45,7 +45,7 @@
 - ### Com yarn:
 
 ```bash
-$ git clone
+$ git clone https://github.com/alanrente/desafio-via-cep_api.git
 $ cd desafio-via-cep_api
 $ yarn
 ```
